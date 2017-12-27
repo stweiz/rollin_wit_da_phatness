@@ -1,0 +1,89 @@
+plugins {
+    id 'com.bmuschko.docker-remote-api' version '3.1.0'
+    id 'idea'
+    id 'java'
+    id 'org.springframework.boot' version '1.5.9.RELEASE'
+}
+
+ext {
+    dockerRegistryHost = 'docker-no-host'
+}
+
+description = "Rollin wit da phatness"
+group = 'org.stweiz'
+version = '0.0.1'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+dependencies {
+    compile 'org.springframework.boot:spring-boot-starter-web:1.5.9.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-undertow:1.5.9.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-thymeleaf:1.5.9.RELEASE'
+    compile 'org.hibernate:hibernate-core:5.2.12.Final'
+    compile 'postgresql:postgresql:9.4.1208-jdbc42-atlassian-hosted'
+}
+
+
+configurations {
+    all {
+        compile {
+            exclude module: 'spring-boot-starter-tomcat'
+            exclude group: 'org.apache.tomcat'
+        }
+    }
+}
+
+jar {
+    manifest {
+        attributes(
+                'Implementation-Title': project.description,
+                'Implementation-Version': project.version
+        )
+    }
+}
+
+springBoot  {
+    buildInfo()
+}
+
+bootRepackage {
+    mainClass 'org.stweiz.rollin_wit_da_phatness.RollinWitDaPhatnessApplication'
+    executable true
+}
+
+// build docker image (see https://github.com/bmuschko/gradle-docker-plugin)
+import com.bmuschko.gradle.docker.tasks.image.DockerBuildImage
+import com.bmuschko.gradle.docker.tasks.image.Dockerfile
+
+task createDockerfile(type: Dockerfile) {
+    destFile = project.file('build/docker/Dockerfile')
+    from 'openjdk:8-jre-alpine'
+    maintainer 'stweiz <stef.weiz@googlemail.com>'
+    user '1000:1000'
+    volume '/tmp'
+    addFile(jar.archiveName, '/')
+    environmentVariable('JAVA_OPTS', '""')
+    entryPoint('sh', '-c', 'java $JAVA_OPTS -jar ' + jar.archiveName)
+    exposePort 8080
+}
+
+task copyJarToDockerContext(type: Copy) {
+    dependsOn bootRepackage
+    from jar
+    into 'build/docker/'
+}
+
+task buildDockerImage(type: DockerBuildImage) {
+    dependsOn copyJarToDockerContext
+    dependsOn createDockerfile
+    inputDir = createDockerfile.destFile.parentFile
+    tag = "$dockerRegistryHost/$project.name:$project.version"
+    doLast {
+        println tag
+    }
+}
