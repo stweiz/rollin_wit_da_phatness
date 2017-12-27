@@ -1,0 +1,20 @@
+# This file exists to help maintain consistent formatting
+# throughout this project.
+#
+# To understand what each of these options mean, see:
+# http://editorconfig.org/
+
+root = true
+
+[*]
+charset = utf-8
+continuation_indent_size = 4
+end_of_line = lf
+indent_brace_style = K&R
+insert_final_newline = true
+indent_style = space
+indent_size = 4
+max_line_length = 120
+spaces_around_brackets = outside
+spaces_around_operators = true
+trim_trailing_whitespace = true
