@@ -2,7 +2,7 @@ Login Seite:
     - Eingabe
         - Benutzername
         - Passwort
-        - Bestätigen -> Benutzerliste
+        - Bestätigen -> Redirect auf Benutzerliste
     - Passwort vergessen
         - E-Mail Eingabe
     - Registration
