@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class LoginPage {
 
-    static final String ENDPOINT = "/";
+    private static final String ENDPOINT = "/";
 
     @GetMapping(ENDPOINT)
     public String hello() {
