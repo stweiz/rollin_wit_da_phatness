@@ -2,7 +2,7 @@ plugins {
     id 'com.bmuschko.docker-remote-api' version '3.1.0'
     id 'idea'
     id 'java'
-    id 'org.springframework.boot' version '1.5.9.RELEASE'
+    id 'org.springframework.boot' version '2.0.0.RELEASE'
 }
 
 ext {
@@ -11,24 +11,23 @@ ext {
 
 description = "Rollin wit da phatness"
 group = 'org.stweiz'
-version = '0.0.1'
+version = '1'
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = 1.10
+targetCompatibility = 1.10
 
 tasks.withType(JavaCompile) {
 	options.encoding = 'UTF-8'
 }
 
 dependencies {
-    compile 'org.springframework.boot:spring-boot-starter-web:1.5.9.RELEASE'
-    compile 'org.springframework.boot:spring-boot-starter-undertow:1.5.9.RELEASE'
-    compile 'org.springframework.boot:spring-boot-starter-thymeleaf:1.5.9.RELEASE'
-    compile 'org.springframework.data:spring-data-jpa:2.0.2.RELEASE'
-    compile 'org.springframework.security:spring-security-web:5.0.0.RELEASE'
-    compile 'org.springframework.security:spring-security-config:5.0.0.RELEASE'
+    compile 'org.springframework.boot:spring-boot-starter-web'
+    compile 'org.springframework.boot:spring-boot-starter-undertow'
+    compile 'org.springframework.data:spring-data-jpa'
+    compile 'org.springframework.security:spring-security-web'
+    compile 'org.springframework.security:spring-security-config'
 
-    runtime 'org.postgresql:postgresql:42.1.4'
+    runtime 'org.postgresql:postgresql:42.2.2'
 }
 
 
@@ -65,7 +64,7 @@ import com.bmuschko.gradle.docker.tasks.image.Dockerfile
 
 task createDockerfile(type: Dockerfile) {
     destFile = project.file('build/docker/Dockerfile')
-    from 'openjdk:8-jre-alpine'
+    from 'openjdk:10-jre-slim'
     maintainer 'stweiz <stef.weiz@googlemail.com>'
     user '1000:1000'
     volume '/tmp'
