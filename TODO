@@ -1,10 +1,13 @@
-Login Seite:
+Login Seite: (HTML Frontend fertig)
     - Eingabe
         - Benutzername
         - Passwort
         - Bestätigen -> Redirect auf Benutzerliste
+
     - Passwort vergessen
         - E-Mail Eingabe
+        - Passwort zurücksetzen -> Fehlermeldung oder Weiterleitung auf Loginseite mit Bestätigung.
+
     - Registration
         - E-Mail
         - Benutzername
@@ -13,35 +16,47 @@ Login Seite:
         - Nachname
         - Geburtstag
 
-Benutzerliste:
-    - Liste der Benutzer für aktuelles Treffen
-        - Liste
-            - Benutzer
-                - Link auf Benutzer (Benutzer)
-                - Bezahlt
-                - Abwesend
-                    - Attest/Arbeit
-                    - Keine Entschuldigung
-                - Bei wem fand es bereits statt (Beachte, falls einer zwei mal in einer Runde gemacht hat)
-    - Informationen für nächstes Treffen
-        - Datum
-        - Bei wem es stattfindet
+Nachdem man eingeloggt ist:
+    Benutzerliste: (Standardseite)
+        - Liste der Benutzer für aktuelles Treffen
+            - Liste
+                - Benutzer
+                    - Link auf Benutzer (Benutzer)
+                    - Bezahlt
+                    - Abwesend
+                        - Attest/Arbeit
+                        - Keine Entschuldigung
+                    - Bei wem fand es bereits statt (Beachte, falls einer zwei mal in einer Runde gemacht hat)
+        - Informationen für nächstes Treffen
+            - Datum
+            - Bei wem es stattfindet
 
-Benutzer:
-    - Daten
-        - E-Mail
-        - Benutzername
-        - Vorname
-        - Nachname
-        - Geburtstag
-    - Abwesend (Counter)
+    Benutzer:
+        - Daten
+            - E-Mail
+            - Benutzername
+            - Vorname
+            - Nachname
+            - Geburtstag
+            - Profilbild
+        - Abwesend (Counter)
 
-Abstimmung:
-    - (evtl. doodle einbindung)
-    - Abstimmungen für kommende Events
+    Benutzerverwaltung
+        Anzeige und Veränderung von:
+            - E-Mail
+            - Benutzername
+            - Vorname
+            - Nachname
+            - Geburtstag
+            - Passwort
+            - Profilbild
 
-Events:
-    - Was
-        - Wann
-        - Wo
-    - Fotos
+    Abstimmung:
+        - (evtl. doodle einbindung)
+        - Abstimmungen für kommende Events
+
+    Events:
+        - Was
+            - Wann
+            - Wo
+        - Fotos
