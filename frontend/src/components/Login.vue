@@ -1,11 +1,11 @@
 <template>
-  <form v-on:submit="onSubmit" class="loginPage">
-    <div class="loginUsername">
+  <form class="loginPage">
+    <div class="loginUsername" v-bind:class="{ 'loginError': hasErrorModelUsername }">
       <span>Benutzername:</span>
       <input v-model="username">
     </div>
 
-    <div class="loginPassword">
+    <div class="loginPassword" v-bind:class="{ 'loginError': hasErrorModelPassword }">
       <span>Passwort:</span>
       <input v-model="password">
     </div>
@@ -21,19 +21,29 @@
     data() {
       return {
         username: '',
-        password: ''
+        password: '',
+        hasErrorValue: false,
       }
     },
     methods: {
       doLogin: function () {
-
+        // Send onSubmit, Check data
+        // Show error or redirect after successful login to members list
       },
       resetPassword: function () {
-        this.go('resetPassword')
+        //Go to ResetPassword
       },
-      onSubmit: function () {
-        // Check data
-        // Show error or redirect after successful login
+    },
+    computed: {
+      hasErrorModelUsername: {
+        get: function () {
+          return this.hasErrorValue = this.username == null || this.username === '';
+        },
+      },
+      hasErrorModelPassword: {
+        get: function () {
+          return this.hasErrorValue = this.password == null || this.password === '';
+        },
       },
     }
   }
@@ -57,5 +67,9 @@
 
   a {
     color: #42b983;
+  }
+
+  .loginError {
+    color: #ff0000;
   }
 </style>

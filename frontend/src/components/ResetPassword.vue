@@ -1,17 +1,35 @@
 <template>
-  <div class="loginPage">
-    <div class="emailAddress">
+  <form class="loginPage">
+    <div class="emailAddress" v-bind:class="{ 'resetError': hasErrorModelReset }">
       <span>E-Mail Adresse:</span>
       <input v-model="emailAddress">
     </div>
 
     <button v-on:click="resetPassword">Passwort zurücksetzen</button>
-  </div>
+  </form>
 </template>
 
 <script>
 export default {
-  name: 'ResetPassword'
+  name: 'ResetPassword',
+  data() {
+    return {
+      emailAddress: '',
+      hasErrorValue: false
+    }
+  },
+  methods: {
+    resetPassword: function () {
+      // Fehlermeldung oder Weiterleitung auf Loginseite mit Bestätigung, dass Passwort resettet wurde.
+    }
+  },
+  computed: {
+    hasErrorModelReset: {
+      get: function () {
+        return this.hasErrorValue = this.emailAddress == null || this.emailAddress === '';
+      }
+    }
+  }
 }
 </script>
 
@@ -30,5 +48,9 @@ li {
 }
 a {
   color: #42b983;
+}
+
+.resetError {
+  color: #ff0000;
 }
 </style>
