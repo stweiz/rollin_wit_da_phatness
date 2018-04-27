@@ -1,6 +1,6 @@
 <template>
   <form class="loginPage">
-    <div class="emailAddress" v-bind:class="{ 'resetError': hasErrorModelReset }">
+    <div class="emailAddress" v-bind:class="{ 'resetPasswordError': hasErrorModelReset }">
       <span>E-Mail Adresse:</span>
       <input v-model="emailAddress">
     </div>
@@ -50,7 +50,7 @@ a {
   color: #42b983;
 }
 
-.resetError {
+.resetPasswordError {
   color: #ff0000;
 }
 </style>
