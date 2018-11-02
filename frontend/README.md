@@ -1,6 +1,6 @@
 # frontend
 
-> The frontend part of \"Rollin wit da phatness\"
+> The frontend part of "Rollin wit da phatness"
 
 ## Build Setup
 
