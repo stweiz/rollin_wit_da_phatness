@@ -9,7 +9,7 @@ buildscript {
 }
 
 plugins {
-    id 'com.bmuschko.docker-remote-api' version '4.0.3'
+    id 'com.bmuschko.docker-remote-api' version '4.0.4'
 }
 
 apply plugin: 'org.springframework.boot'
@@ -21,17 +21,23 @@ description = "Rollin wit da phatness"
 group = 'org.stweiz'
 version = '1'
 
-sourceCompatibility = JavaVersion.VERSION_1_10
-targetCompatibility = JavaVersion.VERSION_1_10
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
 
 dependencies {
-    compile 'org.springframework.boot:spring-boot-starter-web'
+    annotationProcessor 'org.projectlombok:lombok'
+    implementation 'org.projectlombok:lombok'
+    
+    compile 'org.springframework.boot:spring-boot-starter-webflux'
     compile 'org.springframework.boot:spring-boot-starter-undertow'
     compile 'org.springframework.data:spring-data-jpa'
     compile 'org.springframework.security:spring-security-web'
     compile 'org.springframework.security:spring-security-config'
-
+    
     runtime 'org.postgresql:postgresql'
+
+    testCompile 'org.codehaus.groovy:groovy-all:2.5.4'
+    testCompile 'org.spockframework:spock-core:1.2-groovy-2.5'
 }
 
 
